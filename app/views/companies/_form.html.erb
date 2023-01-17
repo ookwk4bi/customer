@@ -1,0 +1,14 @@
+<div class="contents row">
+  <div class="container1">
+    <%= form_with(model: @company, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <%= f.label :会社名 %><br>
+      <%= f.text_field :name, placeholder: "会社名", class: "form-control1" %>
+      <%= f.label :住所 %><br>
+      <%= f.text_field :address, placeholder: "住所", class: "form-control1" %>
+      <%= f.label :アドレス %><br>
+      <%= f.text_field :url, placeholder: "URL", class: "form-control1" %>
+      <%= f.submit "登録"%>
+    <% end %>
+  </div>
+</div>

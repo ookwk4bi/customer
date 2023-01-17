@@ -1,0 +1,26 @@
+<div class="menus">
+  <div id ='menu'>
+    <img src="https://emarketinglab.info/wp-content/themes/original/images/logo.svg" alt="Eマーケティング研究所" class="logo">
+    <% if user_signed_in? %>
+      <ul>
+        <li class='has-sub'><%= link_to "トップページ",  root_path %></li>
+        <li><%= link_to '取得サイト', "#" , style: "margin-left:5px;" %>
+          <ul>
+            <li><%= link_to 'アイミツSaaS', imitsus_path%></li>
+            <li><%= link_to 'アイミツ', aimitsus_path %></li>
+            <li><%= link_to 'リカイゼン', rekaizens_path%></li>
+            <li><%= link_to 'baseconnect', baseconnects_path %></li>
+            <li><%= link_to '上位サイトKW', keywords_path %></li>
+            <li class='last'><%= link_to 'CSVページ', companies_path %></li>
+          </ul>
+        </li>
+        <li class='last'><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, style: "margin-right:5px;" %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li> <%= link_to 'ログイン', new_user_session_path, style: "margin-right:20px;" %></li>
+        <li><%= link_to '新規登録', new_user_registration_path, style: "margin-right:5px;" %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-lg-12">
+    <br>
+    <h1 class="form_group">baseconnect 登録</h1>
+    <br>
+    <div class="contents row">
+      <div class="container1">
+        <%= form_with(model: @base, local: true) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <%= f.label :タイトル名 %><br>
+          <%= f.text_field :base_name, placeholder: "タイトル", class: "form-control1" %>
+          <%= f.label :アドレス %><br>
+          <%= f.text_field :base_url, placeholder: "URL", class: "form-control1" %>
+          <%= f.submit "登録", data: { turbo_method: :post, turbo_confirm: 'URLは正しいですか？'} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

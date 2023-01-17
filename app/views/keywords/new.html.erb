@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-12">
+    <br>
+    <h1 class="form_group">上位サイトKW 登録</h1>
+    <p class="form_group">⚠︎ファイル名は違う名前を入れてください。</p>
+    <p class="form_group keyword"><%= @key %></p>
+    <br>
+    <div class="contents row">
+      <div class="container1">
+        <%= form_with(model: @keyword, local: true) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <%= f.label :利用ファイル名 %><br>
+          <%= f.text_field :open_filename, placeholder: "利用ファイル", class: "form-control1" %>
+          <%= f.label :保存ファイル名 %><br>
+          <%= f.text_field :save_filename, placeholder: "保存ファイル", class: "form-control1" %>
+          <%= f.label :キーワード数 %><br>
+          <%= f.text_field :number, placeholder: "キーワード数", class: "form-control1" %>
+          <%= f.submit "登録", data: { turbo_method: :post, turbo_confirm: 'ファイル名とキーワード数は正しいですか？'} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="form_group">詳細ページ</h1><br>
+    <dl>
+      <div class="form_group2">
+        <dt>会社名</dt>
+        <dd style="margin:0px 0px 10px 20px"><%= @company.name %> </dd>
+      </div>
+      <div class="form_group2">
+        <dt>住所</dt>
+        <dd style="margin:0px 0px 10px 20px"><%= @company.address %></dd>
+      </div>
+      <div class="form_group2">
+        <dt>URL</dt>
+        <dd style="margin:0px 0px 10px 20px"><%= @company.url %></dd>
+      </div>
+      <% if current_user.id == @company.user_id %>
+        <h2 class="btn_edit"><%= link_to '〜 編集ページへ 〜', edit_company_path(@company), class: "wide" %></h1>
+      <% end %>
+    </dl>
+  </div>
+</div>

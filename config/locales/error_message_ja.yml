@@ -1,0 +1,4 @@
+ja:
+  errors:
+    messages:
+       no_saved: "登録項目に不備がありました。"

@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      imitsu: アイミツSaaS
+      aimitsu: アイミツ
+      rekaizen: リカイゼン
+      baseconnect: べースコネクト
+      keyword: キーワード
+    attributes:
+      user:
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認用)
+      company:
+        name: 会社名
+        address: 住所
+        url: URL
+      imitsu:
+        imitsu_name: タイトル
+        imitsu_url: URL
+      aimitsu:
+        aimitsu_name: タイトル
+        aimitsu_url: URL
+      rekaizen:
+        rekaizen_name: タイトル
+        rekaizen_url: URL
+      baseconnect:
+        base_name: タイトル
+        base_url: URL
+      keyword:
+        open_filename: 利用ファイル名
+        save_filename: 保存ファイル名
+        number: キーワード数
+
+

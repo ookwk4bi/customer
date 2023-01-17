@@ -1,0 +1,48 @@
+<div class="container3">
+  <%= form_with(url: search_keywords_path, local: true, method: :get, class: "search-form") do |form| %>
+    <%= form.text_field :keyword, placeholder: "タイトル・URLのどちらかを入力してください", class: "search-input" %>
+    <%= form.submit "検索", class: "search-btn" %>
+  <% end %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container">
+        <h3>上位サイトKW 一覧</h3>
+        <div class="col-lg-6">
+        </div>
+        <div class="col-lg-6">
+          <%= link_to '取得', new_keyword_path, class: "btn btn-primary pull-right btn-size" %>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <th>タイトル</th>
+            <th>添付ファイル</th>
+            <th>編集</th>
+            <th>削除</th>
+          </thead>
+          <tbody>
+            <% @keyword.each do |keyword| %>
+              <% if current_user.id == keyword.user_id %>
+                <tr>
+                  <td><%= keyword.save_filename %></td>
+                  <td>
+                    <% if keyword.csv_file.attached? %>
+                      <%= link_to keyword.csv_file.filename, rails_blob_path(keyword.csv_file) %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to '編集', edit_keyword_path(keyword), class: "btn btn-primary btn-xs" %>
+                  </td>
+                  <td>
+                    <%= link_to '削除', keyword_path(keyword), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: "btn btn-primary btn-xs" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @keywords %>
+      </div>
+    </div>
+  </div>
+</div>
+

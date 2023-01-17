@@ -1,0 +1,49 @@
+<div class="container3">
+  <%= form_with(url: search_baseconnects_path, local: true, method: :get, class: "search-form") do |form| %>
+    <%= form.text_field :keyword, placeholder: "タイトル・URLのどちらかを入力してください", class: "search-input" %>
+    <%= form.submit "検索", class: "search-btn" %>
+  <% end %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container">
+        <h3>baseconnect 一覧</h1>
+        <div class="col-lg-6">
+        </div>
+        <div class="col-lg-6">
+          <%= link_to '取得', new_baseconnect_path, class: "btn btn-primary pull-right btn-size" %>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <th>タイトル</th>
+            <th>URL</th>
+            <th>添付ファイル</th>
+            <th>編集</th>
+            <th>削除</th>
+          </thead>
+          <tbody>
+            <% @base.each do |base| %>
+              <% if current_user.id == base.user_id %>
+                <tr>
+                  <td><%= base.base_name %></td>
+                  <td><%= base.base_url%></td>
+                  <td>
+                    <% if base.csv_file.attached? %>
+                      <%= link_to base.csv_file.filename, rails_blob_path(base.csv_file) %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to '編集', edit_baseconnect_path(base), class: "btn btn-primary btn-xs" %>
+                  </td>
+                  <td>
+                    <%= link_to '削除', baseconnect_path(base), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？'}, class: "btn btn-primary btn-xs" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @bases %>
+      </div>
+    </div>
+  </div>
+</div>

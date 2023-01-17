@@ -1,0 +1,2 @@
+module ImitsusHelper
+end

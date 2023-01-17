@@ -1,0 +1,8 @@
+:queues:
+  - queue_name1
+  - queue_name2
+  - my_queue
+:limits:
+  queue_name1: 5
+  queue_name2: 5
+  my_queue: 2
