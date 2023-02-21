@@ -82,3 +82,4 @@ gem "webdrivers"
 gem "nokogiri"
 gem 'ransack'
 gem 'rails-i18n'
+gem 'unicorn'
