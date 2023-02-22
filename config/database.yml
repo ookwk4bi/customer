@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: cattleya
-  password: <%= ENV["SECRET_KEY_BASE"] %>
+  username: root
+  password: ka224reapf
   socket: /var/lib/mysql/mysql.sock
 
 development:
@@ -51,5 +51,5 @@ test:
 production:
   <<: *default
   database: customer_production
-  username: cattleya
-  password: <%= ENV["SECRET_KEY_BASE"] %>
+  username: root
+  password: ka224reapf
