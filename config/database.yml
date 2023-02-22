@@ -53,3 +53,4 @@ production:
   database: customer_production
   username: root
   password: ka224reapf
+  secret_key_base: ka224reapf
