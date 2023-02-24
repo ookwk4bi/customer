@@ -52,5 +52,5 @@ test:
 production:
   <<: *default
   database: customer_production
-  username: root
-  password: ka224reapf
+  username: <%= ENV['CUSTOMER_DATABASE_USER'] %>
+  password: <%= ENV['SECRET_KEY_BASE'] %>

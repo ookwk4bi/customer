@@ -83,3 +83,4 @@ gem "nokogiri"
 gem 'ransack'
 gem 'rails-i18n'
 gem 'unicorn'
+gem 'dotenv-rails'
