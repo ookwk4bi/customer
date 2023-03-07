@@ -7,6 +7,6 @@
 :limits:
   aimitsu_scraping: 1
   base_scraping: 1
-  aimitsu-saas_scraping: 1
+  aimitsusaas_scraping: 1
   keyword_scraping: 1
   rekaizen_scraping: 1
