@@ -1,12 +1,8 @@
 :queues:
-  - aimitsu_scraping
-  - base_scraping
-  - aimitsusaas_scraping
-  - keyword_scraping
-  - rekaizen_scraping
+  - queue_name1
+  - queue_name2
+  - my_queue
 :limits:
-  aimitsu_scraping: 1
-  base_scraping: 1
-  aimitsusaas_scraping: 1
-  keyword_scraping: 1
-  rekaizen_scraping: 1
+  queue_name1: 5
+  queue_name2: 5
+  my_queue: 2
