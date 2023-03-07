@@ -3,7 +3,7 @@
 require "csv"
 class RekaizenJob
   include Sidekiq::Job
-  sidekiq_options queue: :queue_name1
+  sidekiq_options queue: :rekaizen_scraping
   # Sidekiq::Queue['my_queue'].limit = 1 いらない疑惑
   def capybara(mobile: false, headless: true, images_disabled: true)
     # Capybara自体の設定、ここではどのドライバーを使うかを設定しています
