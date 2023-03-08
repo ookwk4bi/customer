@@ -1,8 +1,12 @@
 :queues:
-  - queue_name1
-  - queue_name2
-  - my_queue
+  - aimitsu_scraping
+  - baseconnect_scraping
+  - keyword_scraping
+  - rekaizen_scraping
+  - aimitsu_saas_scraping
 :limits:
-  queue_name1: 5
-  queue_name2: 5
-  my_queue: 2
+  aimitus_scraping: 1
+  baseconnect_scraping: 1
+  keyword_scraping: 1
+  rekaizen_scraping: 1
+  aimitsu_saas_scraping: 1
