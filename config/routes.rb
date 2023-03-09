@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
   root to: "tops#index"
+  resources :tops, only: :index
   resources :companies do
     collection do
       get 'search'
