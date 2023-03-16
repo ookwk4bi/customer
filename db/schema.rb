@@ -79,7 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_014748) do
   create_table "keywords", charset: "utf8", force: :cascade do |t|
     t.string "open_filename"
     t.string "save_filename"
-    t.integer "number"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

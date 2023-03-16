@@ -208,7 +208,6 @@ form input[type="submit"]:hover {
   height: 50vh;
   display: flex;
   justify-content: center;
-  
 }
 
 .row1{
@@ -216,11 +215,26 @@ form input[type="submit"]:hover {
 
 }
 
+.form-control2{
+  width: 500px;
+  border: #000 1px solid;
+  display: flex;
+  margin-bottom: 60px;
+  margin-left: 20px;
+}
+
 .form-control1{
   width: 500px;
   border: #000 1px solid;
   display: flex;
   margin-bottom: 45px;
+  margin-left: 20px;
+
+}
+
+.form-control3{
+  margin-left: 15px;
+  margin-top: 25px;
 }
 
 .col-lg-12{

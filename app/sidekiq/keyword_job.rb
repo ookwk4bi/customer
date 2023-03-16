@@ -42,12 +42,12 @@ class KeywordJob
     return Capybara::Session.new(:selenium_chrome)
   end
 
-  def perform(keyword_id)
+  def perform(name, keyword_id)
     # 引数keyword_idのID情報からすべてのカラム情報を取得。
     keyword = Keyword.find_by(id: keyword_id)
     filedir  = "#{Rails.root}/tmp" # tmp配下に保存されて欲しいのでtmpのディレクトリパスを変数に入れる
     # 登録情報の利用ファイル名の情報を変数filenameに入れる
-    filename = "#{keyword.open_filename}.csv"
+    filename = name
     # 登録情報の保存ファイル名の情報を変数filenameに入れる
     filename1 = "#{keyword.save_filename}.csv"
     # tmp配下の保存ファイル名の変数を作る（フォルダのパスとファイル名を組み合わせて、ファイルのフルパスを作り変数に入れる。）。
@@ -61,49 +61,57 @@ class KeywordJob
     # 変数companiesの配列を全格納する配列作成→CSV保存の処理のため。
     arrangements = Array.new
     # ループ処理
-    keyword.number.times do |n|
-      # 結果格納用配列→CSV保存の処理のため。
-      companies = Array.new
-      doc = Nokogiri::HTML.parse(session.html)
-      # 変数failepathを元にファイルの1列目を読み取り、読み取った情報を変数に入れている。
-      data_list = CSV.read(filepath).map{|row| row[0]}
-      # 次のキーワードが取得できない場合、処理を終了する
-      unless data_list[n].present?
-        break
-      end
-      # yahooページのトップの検索フォームと２回目以降の検索フォームが違うため条件分岐で分けている。
-      if n >= 1
-        session.find("(//input[@class='SearchBox__searchInput js-SearchBox__searchInput'])[1]").set("#{data_list[n]}")
-        sleep(1)
-        session.find(:xpath, "(//span[@class='SearchBox__searchButtonText'])[1]").click
-        sleep(1)
-      else
-        session.find("//input[@class='_1wsoZ5fswvzAoNYvIJgrU4']").set("#{data_list[n]}")
-        sleep(1)
-        session.find(:xpath, "//button[@class='_63Ie6douiF2dG_ihlFTen cl-noclick-log']").click
-        sleep(1)
-      end
-      # html情報をnokogiriで処理
-      doc = Nokogiri::HTML.parse(session.html)
-      # xpathを元に要素を取得（aタグ）。
-      elements = doc.xpath("//div[@class='sw-Card Algo Algo-anotherSuggest']/section/div[1]/div/div/a")
-      elements.each.with_index(0) do |element, i|
-        # break if i >= 4
+    50.times do |n|
+      begin
+        # 結果格納用配列→CSV保存の処理のため。
+        companies = Array.new
+        doc = Nokogiri::HTML.parse(session.html)
         # 変数failepathを元にファイルの1列目を読み取り、読み取った情報を変数に入れている。
         data_list = CSV.read(filepath).map{|row| row[0]}
-        # aタグ要素のhref属性の値を取得。
-        url = element.attribute("href").value
-        # 結果格納用配列にurlを追加する処理（1回目にキーワード名を格納したいので条件式を利用）
-        if i >= 1
-          companies << url
-        else
-          companies << data_list[n]
-          companies << url
+        # 次のキーワードが取得できない場合、処理を終了する
+        unless data_list[n].present?
+          break
         end
+        # yahooページのトップの検索フォームと２回目以降の検索フォームが違うため条件分岐で分けている。
+        if n >= 1
+          session.find("(//input[@class='SearchBox__searchInput js-SearchBox__searchInput'])[1]").set("#{data_list[n]}")
+          sleep(1)
+          session.find(:xpath, "(//span[@class='SearchBox__searchButtonText'])[1]").click
+          sleep(1)
+        else
+          session.find("//input[@class='_1wsoZ5fswvzAoNYvIJgrU4']").set("#{data_list[n]}")
+          sleep(1)
+          session.find(:xpath, "//button[@class='_63Ie6douiF2dG_ihlFTen cl-noclick-log']").click
+          sleep(1)
+        end
+        # html情報をnokogiriで処理
+        doc = Nokogiri::HTML.parse(session.html)
+        # xpathを元に要素を取得（aタグ）。
+        elements = doc.xpath("//div[@class='sw-Card Algo Algo-anotherSuggest']/section/div[1]/div/div/a")
+        elements.each.with_index(0) do |element, i|
+          # break if i >= 4
+          # 変数failepathを元にファイルの1列目を読み取り、読み取った情報を変数に入れている。
+          data_list = CSV.read(filepath).map{|row| row[0]}
+          # aタグ要素のhref属性の値を取得。
+          url = element.attribute("href").value
+          # 結果格納用配列にurlを追加する処理（1回目にキーワード名を格納したいので条件式を利用）
+          if i >= 1
+            companies << url
+          else
+            companies << data_list[n]
+            companies << url
+          end
+        end
+        # 結果格納用配列にcompaniesを追加する処理（キーワード毎のyahooの１ページ目のリンク情報を配列にしてcompaniesを追加している）
+        puts companies
+        arrangements << companies
+      rescue => exception
+        puts exception
+        puts "処理に失敗したためスクリプトを終了します"
+        break
+      ensure
+        # 必ず処理する内容
       end
-      # 結果格納用配列にcompaniesを追加する処理（キーワード毎のyahooの１ページ目のリンク情報を配列にしてcompaniesを追加している）
-      puts companies
-      arrangements << companies
     end
     # html情報をnokogiriで処理
     doc = Nokogiri::HTML.parse(session.html)
@@ -124,6 +132,7 @@ class KeywordJob
     keyword.csv_file.attach(io: File.open(save_filename), filename: filename1, content_type: "text/csv")
     # 作成したCSVファイルを削除。
     File.delete(save_filename)
+    File.delete(filepath)
     puts "ループ終了"
     # ループ終了時の現在のブラウザのURLを表示。
     puts session.current_url

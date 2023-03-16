@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # ログアウト後本番環境でログイン画面に遷移しないため↓
   before_action :authenticate_user!, only: [:/]
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :basic_auth

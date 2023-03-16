@@ -67,62 +67,75 @@ class RekaizenJob
     companies = Array.new
     # ループ処理
     loop do
-      # メールシステム一覧のlinkを取得（aタグ）
-      lists = session.all(:xpath, "//div[@class='company_info']/h3/a")
-      # 取得したメールシステム一覧のaタグ要素をループ処理してパス（セレクター）を取得
-      list_paths = lists.map{|element| element.path}
-      # パスをループ処理する
-      list_paths.each.with_index(1) do |list_path, i|
-        # break if i >= 4
-        # xpathを元に要素の取得
-        list_link = session.find(:xpath, list_path)
-        # 要素をホバー
-        list_link.hover
-        # 要素をクリック
-        list_link.click
-        sleep(1)
-        # 全てのタブを取得
-        windows = session.driver.browser.window_handles
-        # 最後に開いたタブに移動=リンククリックで開いたタブ
-        session.driver.browser.switch_to.window(windows.last)
-        sleep(1)
+      begin
+        # メールシステム一覧のlinkを取得（aタグ）
+        lists = session.all(:xpath, "//div[@class='company_info']/h3/a")
+        # 取得したメールシステム一覧のaタグ要素をループ処理してパス（セレクター）を取得
+        list_paths = lists.map{|element| element.path}
+        # パスをループ処理する
+        list_paths.each.with_index(1) do |list_path, i|
+          # break if i >= 4
+          # xpathを元に要素の取得
+          list_link = session.find(:xpath, list_path)
+          # 要素をホバー
+          list_link.hover
+          # 要素をクリック
+          list_link.click
+          sleep(1)
+          # 全てのタブを取得
+          windows = session.driver.browser.window_handles
+          # 最後に開いたタブに移動=リンククリックで開いたタブ
+          session.driver.browser.switch_to.window(windows.last)
+          sleep(1)
+          # html情報をnokogiriで処理
+          doc = Nokogiri::HTML.parse(session.html)
+          # 会社名と記載したtextがあるdtタグの後ろのddタグのテキスト（⚠︎本当はif分を一つずつ記載するべき）
+          # xpathを元に要素のテキストを取得
+          name = doc.xpath("//th[text()='会社名']/following-sibling::td").text.squish
+          address = doc.xpath("//th[text()='住所']/following-sibling::td").text.squish
+          url = doc.xpath("//th[text()='URL']/following-sibling::td").text.squish
+          puts name #デバック用
+          # ハッシュを作成する
+          hash = {name: name, address: address, url: url}
+          # 結果格納用配列にハッシュを追加する
+          companies.push(hash)
+          # 現在表示中のタブ=リンククリックで開いたタブをクローズ（これをしないとゴミのタブがたまる）
+          session.driver.browser.close
+          # 元いたタブに戻る
+          session.driver.browser.switch_to.window(windows.first)
+          sleep(1)
+        end
         # html情報をnokogiriで処理
         doc = Nokogiri::HTML.parse(session.html)
-        # 会社名と記載したtextがあるdtタグの後ろのddタグのテキスト（⚠︎本当はif分を一つずつ記載するべき）
-        # xpathを元に要素のテキストを取得
-        name = doc.xpath("//th[text()='会社名']/following-sibling::td").text.squish
-        address = doc.xpath("//th[text()='住所']/following-sibling::td").text.squish
-        url = doc.xpath("//th[text()='URL']/following-sibling::td").text.squish
-        puts name #デバック用
-        # ハッシュを作成する
-        hash = {name: name, address: address, url: url}
-        # 結果格納用配列にハッシュを追加する
-        companies.push(hash)
-        # 現在表示中のタブ=リンククリックで開いたタブをクローズ（これをしないとゴミのタブがたまる）
-        session.driver.browser.close
-        # 元いたタブに戻る
-        session.driver.browser.switch_to.window(windows.first)
-        sleep(1)
-      end
-      # html情報をnokogiriで処理
-      doc = Nokogiri::HTML.parse(session.html)
-      # xpathを元に要素の取得
-      pages = doc.xpath("//li[@class='current']/following-sibling::li")
-      # loop処理を停止するための処理
-      # ページ遷移のページリンクがある場合、次のページへのページリンクをクリック。
-      if pages.present?
-        session.find("//li[@class='current']/following-sibling::li[1]/a").click
-        sleep(1)
-      else
-        break
+        # xpathを元に要素の取得
+        pages = doc.xpath("//li[@class='current']/following-sibling::li")
+        # loop処理を停止するための処理
+        # ページ遷移のページリンクがある場合、次のページへのページリンクをクリック。
+        if pages.present?
+          session.find("//li[@class='current']/following-sibling::li[1]/a").click
+          sleep(1)
+        else
+          break
+        end
+      rescue => exception
+        puts exception
+          puts "処理に失敗したためスクリプトを終了します"
+          break
+      ensure
+          # 必ず処理する内容
       end
     end
     puts "ループ終了"
-    # ループ終了時の現在のブラウザのURLを表示。
-    puts session.current_url
-    # ブラウザを閉じる
-    session.driver.quit
-    sleep(1)
+    begin
+      # ループ終了時の現在のブラウザのURLを表示。
+      puts session.current_url
+      # ブラウザを閉じる
+      session.driver.quit
+      sleep(1)
+    rescue => exception
+      puts exception
+      puts "ブラウザの操作に失敗しました"
+    end
     # スクレイピングした情報を元にCSVのデータを作成
     # Windowsで開くことを想定しているのでUTF-8 BOM付きのCSVファイルを作成する
     bom ="\xEF\xBB\xBF" # bomを作成

@@ -3,6 +3,8 @@
     <br>
     <h1 class="form_group">アイミツSaaS登録</h1>
     <br>
+    <p class="form_group">⚠100ページを超えないようにしてください！！</p>
+    <br>
     <div class="contents row">
       <div class="container1">
         <%= form_with(model: @imitsu, local: true) do |f| %>
@@ -11,7 +13,7 @@
           <%= f.text_field :imitsu_name, placeholder: "タイトル", class: "form-control1" %>
           <%= f.label :アドレス %><br>
           <%= f.text_field :imitsu_url, placeholder: "URL", class: "form-control1" %>
-          <%= f.submit "登録", data: { turbo_method: :post, turbo_confirm: 'URLは正しいですか？'} %>
+          <%= f.submit "登録", data: { turbo_method: :post, turbo_confirm: 'URLは正しいですか？'}, class: "form-control3"%>
         <% end %>
       </div>
     </div>
