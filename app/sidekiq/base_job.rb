@@ -60,6 +60,7 @@ class BaseJob
     if koukoku.present? # Nokogiri::HTML.parse(session.html).xpath("//span[@class='close-btn']").present?
       # あった場合広告の罰ボタンをクリック。
       session.find("//div[@class='x-btn modalClose-btn']").click
+      sleep(1)
     end
     # 結果格納用配列→CSV保存の処理のため。
     companies = Array.new
@@ -79,7 +80,7 @@ class BaseJob
           list_link.hover
           # 要素をクリック
           list_link.click
-          sleep(1)
+          sleep(rand(1..3))
           # html情報をnokogiriで処理
           doc = Nokogiri::HTML.parse(session.html)
           # 会社名と記載したtextがあるdtタグの後ろのddタグのテキスト（⚠︎本当はif分を一つずつ記載するべき）
