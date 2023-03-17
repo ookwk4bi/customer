@@ -143,6 +143,7 @@ class AimitsuJob
       puts session.current_url
       # ブラウザを閉じる
       session.driver.quit
+      sleep(1)
     rescue => exception
       puts exception
       puts "ブラウザの操作に失敗しました"

@@ -64,7 +64,7 @@ class BaseJob
     # 結果格納用配列→CSV保存の処理のため。
     companies = Array.new
     # ループ処理
-    loop do
+    100.times do
       begin
         # メールシステム一覧のlinkを取得（aタグ）
         lists = session.all(:xpath, "//h4[@class='searches__result__list__header__title']/a")
@@ -72,7 +72,7 @@ class BaseJob
         list_paths = lists.map{|element| element.path}
         # パスをループ処理する
         list_paths.each.with_index(1) do |list_path, i|
-          break if i >= 4
+          # break if i >= 4
           # xpathを元に要素の取得
           list_link = session.find(:xpath, list_path)
           # 要素をホバー
