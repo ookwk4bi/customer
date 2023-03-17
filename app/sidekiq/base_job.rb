@@ -1,7 +1,7 @@
 # sidekiqでアイミツ在庫管理システムのCSVファイルを一覧ページに添付し、ダウンロードできる処理。
 #baseconnectの処理
 require "csv"
-class BaseJob:
+class BaseJob
   include Sidekiq::Job
   sidekiq_options queue: :baseconnect_scraping
   # Sidekiq::Queue['my_queue'].limit = 1 いらない疑惑
@@ -10,7 +10,7 @@ class BaseJob:
     Capybara.configure do |config|
       config.run_server = false
       config.default_driver = :selenium_chrome
-      config.javasccript_driver = :selenium_chrome
+      config.javascript_driver = :selenium_chrome
       config.default_selector = :xpath
       config.default_max_wait_time = 60
     end
