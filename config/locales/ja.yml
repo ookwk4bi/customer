@@ -27,8 +27,8 @@ ja:
         rekaizen_name: タイトル
         rekaizen_url: URL
       baseconnect:
-        base_name: タイトル
-        base_url: URL
+        name: タイトル
+        url: URL
       keyword:
         open_filename: 利用ファイル名
         save_filename: 保存ファイル名

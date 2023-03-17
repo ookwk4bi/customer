@@ -49,8 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_014748) do
   end
 
   create_table "baseconnects", charset: "utf8", force: :cascade do |t|
-    t.string "base_name", null: false
-    t.string "base_url", null: false
+    t.string "name", null: false
+    t.string "url", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

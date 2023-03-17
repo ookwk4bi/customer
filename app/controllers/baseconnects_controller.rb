@@ -43,7 +43,7 @@ class BaseconnectsController < ApplicationController
 
   private
     def baseconnect_params
-      params.require(:baseconnect).permit(:base_name, :base_url, :csv_file).merge(user_id: current_user.id)
+      params.require(:baseconnect).permit(:name, :url, :csv_file).merge(user_id: current_user.id)
     end
 
     def set_item

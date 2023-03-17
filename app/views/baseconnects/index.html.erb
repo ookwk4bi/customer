@@ -24,8 +24,8 @@
             <% @bases.each do |base| %>
               <% if current_user.id == base.user_id %>
                 <tr>
-                  <td><%= base.base_name %></td>
-                  <td><%= base.base_url%></td>
+                  <td><%= base.name %></td>
+                  <td><%= base.url%></td>
                   <td>
                     <% if base.csv_file.attached? %>
                       <%= link_to base.csv_file.filename, rails_blob_path(base.csv_file) %>
