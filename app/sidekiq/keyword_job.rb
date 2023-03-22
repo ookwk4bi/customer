@@ -49,7 +49,7 @@ class KeywordJob
     # 登録情報の利用ファイル名の情報を変数filenameに入れる
     filename = name
     # 登録情報の保存ファイル名の情報を変数filenameに入れる
-    filename1 = "#{keyword.save_filename}.csv"
+    filename1 = "#{keyword.save_filename}_#{Time.zone.now.strftime('%Y%m%d')}.csv"
     # tmp配下の保存ファイル名の変数を作る（フォルダのパスとファイル名を組み合わせて、ファイルのフルパスを作り変数に入れる。）。
     save_filename = "#{filedir}/#{filename1}"
     filepath = "#{filedir}/#{filename}" # フォルダのパスとファイル名を組み合わせて、ファイルのフルパスを作り変数に入れる。
