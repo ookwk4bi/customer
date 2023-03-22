@@ -21,8 +21,8 @@ class KeywordsController < ApplicationController
       end
       fp = open(filepath,'r')
       line_count = fp.read.count("\n")
-      if line_count >= 51
-        @key = flash[:@key] = "⚠︎利用ファイルのキーワード数を50以下にしてください。"
+      if line_count >= 11
+        @key = flash[:@key] = "⚠︎利用ファイルのキーワード数を10以下にしてください。"
         File.delete(filepath)
         render :new, status: :unprocessable_entity
       elsif @keyword.save

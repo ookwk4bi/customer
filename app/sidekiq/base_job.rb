@@ -49,7 +49,7 @@ class BaseJob
     filename = "#{baseconnect.name}_#{Time.zone.now.strftime('%Y%m%d')}.csv"
     filepath = "#{filedir}/#{filename}" # フォルダのパスとファイル名を組み合わせて、ファイルのフルパスを作り変数に入れる。
     # ブラウザを起動
-    session = capybara#(headless: false) # def capybara ~ end の処理を行っている
+    session = capybara(headless: false) # def capybara ~ end の処理を行っている
     # アイミツSaaS_メールシステム一覧のURLを開く。変数subjectを元にURLを指定している。
     session.visit baseconnect.url
     sleep(2)
