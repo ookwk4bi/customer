@@ -352,3 +352,15 @@ width: 100%;
 .first3{
   margin-left: 80px;
 }
+
+.right{
+  margin-left: 5px;
+}
+
+.left{
+  margin-right: 3px;
+}
+
+.right1{
+  margin-left: 2px;
+}
