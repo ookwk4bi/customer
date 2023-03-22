@@ -1,18 +1,25 @@
 <div class="row">
   <div class="col-lg-12">
-    <br>
     <h1 class="form_group">アイミツSaaS登録</h1>
     <br>
-    <p class="form_group">⚠100ページを超えないようにしてください！！</p>
+    <br>
+    <div class="form_group3">
+      <p class="form_group_top">⚠︎注意点</p>
+      <p>①このページはアイミツSaaSサイトのスクレイピングの情報の取得が可能です!!　</p>
+      <p>②アドレスの入力欄に入力したURLから10ページ目までをスクレイピングします。</p>
+      <p>③アドレス欄は先頭にhttps://saas.imitsu.jpが含まれているURLを入力ください。</p>
+      <p>④CSVファイルはスクレイピング終了後に一覧ページにて自動的に添付されます。</p>
+    </div>
+    <br>
     <br>
     <div class="contents row">
       <div class="container1">
         <%= form_with(model: @imitsu, local: true) do |f| %>
           <%= render 'layouts/error_messages', model: f.object %>
           <%= f.label :タイトル名 %><br>
-          <%= f.text_field :imitsu_name, placeholder: "タイトル", class: "form-control1" %>
+          <%= f.text_field :imitsu_name, placeholder: "任意のタイトルをつけてください", class: "form-control1" %>
           <%= f.label :アドレス %><br>
-          <%= f.text_field :imitsu_url, placeholder: "URL", class: "form-control1" %>
+          <%= f.text_field :imitsu_url, placeholder: "https://saas.imitsu.jp", class: "form-control1" %>
           <%= f.submit "登録", data: { turbo_method: :post, turbo_confirm: 'URLは正しいですか？'}, class: "form-control3"%>
         <% end %>
       </div>

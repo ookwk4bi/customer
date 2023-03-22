@@ -65,7 +65,7 @@ class BaseJob
     # 結果格納用配列→CSV保存の処理のため。
     companies = Array.new
     # ループ処理
-    100.times do
+    10.times do |n|
       # メールシステム一覧のlinkを取得（aタグ）
       lists = session.all(:xpath, "//h4[@class='searches__result__list__header__title']/a")
       # 取得したメールシステム一覧のaタグ要素をループ処理してパス（セレクター）を取得

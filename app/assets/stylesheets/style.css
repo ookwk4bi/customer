@@ -181,6 +181,17 @@ input[type="file"] {
   align-items: center;
 }
 
+.form_group3{
+  display: block;
+  justify-content: center;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+}
+.form_group_top{
+  font-size: 20px;
+}
+
 form input {
   width: 100%;
   margin: 5px 0 15px;
@@ -320,4 +331,24 @@ width: 100%;
 }
 .keyword{
   color: red;
+}
+
+.subject{
+  color: #fff;
+  font-size: 20px;
+  margin-right: 70px;
+}
+
+/* タイトル */
+.first{
+  margin-left: 70px;
+}
+.first1{
+  margin-left: 40px;
+}
+.first2{
+  margin-left: 110px;
+}
+.first3{
+  margin-left: 80px;
 }

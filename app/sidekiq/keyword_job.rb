@@ -57,11 +57,11 @@ class KeywordJob
     session = capybara#(headless: false) # def capybara ~ end の処理を行っている
     # アイミツSaaS_メールシステム一覧のURLを開く。変数subjectを元にURLを指定している。
     session.visit 'https://www.yahoo.co.jp/'
-    sleep(2)
+    sleep(4)
     # 変数companiesの配列を全格納する配列作成→CSV保存の処理のため。
     arrangements = Array.new
     # ループ処理
-    50.times do |n|
+    10.times do |n|
       begin
         # 結果格納用配列→CSV保存の処理のため。
         companies = Array.new

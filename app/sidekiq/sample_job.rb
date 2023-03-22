@@ -58,7 +58,7 @@ class SampleJob
     # 結果格納用配列→CSV保存の処理のため。
     companies = Array.new
     # ループ処理
-    loop do
+    10.times do |n|
       begin
         # メールシステム一覧のlinkを取得（aタグ）
         lists = session.all(:xpath, "//div[@class='name']/div/a")

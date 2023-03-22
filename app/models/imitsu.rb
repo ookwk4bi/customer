@@ -1,6 +1,7 @@
 class Imitsu < ApplicationRecord
   with_options presence: true do
     validates :imitsu_name
+    validates :imitsu_url, format: { with: /\Ahttps:\/\/saas\.imitsu\.jp/, message: "は https://saas.imitsu.jp から始まる必要があります" }
     validates :imitsu_url, format: /\A#{URI::regexp(%w(http https))}\z/
   end
   has_one_attached :csv_file

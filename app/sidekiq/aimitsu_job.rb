@@ -58,7 +58,7 @@ class AimitsuJob
     # 結果格納用配列→CSV保存の処理のため。
     companies = Array.new
     # ループ処理
-    loop do
+    10.times do |n|
       begin
         # 広告が出てしまい、次のボタンが押せないので最初にスクロールして表示させ、広告を消す。
         session.execute_script "window.scrollBy(0,10000)"

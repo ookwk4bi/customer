@@ -1,11 +1,27 @@
 <div class="row">
   <div class="col-lg-12">
+    <h1 class="form_group">KWの上位サイト取得</h1>
     <br>
-    <h1 class="form_group">上位サイトKW 登録</h1>
     <br>
-    <p class="form_group">⚠ファイルは50行を超えないようにしてください！！</p>
+    <div class="form_group3">
+      <p class="form_group_top">⚠︎注意点</p>
+      <p>①添付したCSVファイルのKWを元に検索上位10サイトのURL情報を取得することが可能です。</p>
+      <p>②検索上位10サイトの情報を取得ができるKWの数は10個です。（CSVファイルの10行目まで）</p>
+      <p>③添付ファイルはCSVファイルのみアップロードが可能です。(EXCEL・PDFなど不可)　　　　</p>
+      <p>④CSVファイルはスクレイピング終了後に一覧ページにて自動的に添付されます。　　　　　　</p>
+    </div>
     <p class="form_group keyword"><%= @key %></p>
     <br>
+    <% if @keyword.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@keyword.errors.count, "error") %> prohibited this keyword from being saved:</h2>
+        <ul>
+          <% @keyword.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="contents row">
       <div class="container1">
         <%= form_with(model: @keyword, method: :post, local: true, multipart: true) do |f| %>
@@ -18,7 +34,7 @@
           </label>
           <br>
           <%= f.label :保存ファイル名 %><br>
-          <%= f.text_field :save_filename, placeholder: "保存ファイル", class: "form-control1" %>
+          <%= f.text_field :save_filename, placeholder: "任意のファイル名をつけてください", class: "form-control1" %>
           <%# <%= f.label :キーワード数 %><br>
           <%# <%= f.text_field :number, placeholder: "キーワード数", class: "form-control1" %>
           <%= f.submit "登録", data: { turbo_method: :post, turbo_confirm: 'ファイル名とキーワード数は正しいですか？'}, class: "form-control3" %>
