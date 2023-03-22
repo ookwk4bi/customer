@@ -5,9 +5,9 @@
     <br>
     <div class="form_group3">
       <p class="form_group_top">⚠︎注意点</p>
-      <p>①このページはbaseconnectサイトのみスクレイピングの情報の取得が可能です。　</p>
+      <p class="right">①このページでは、baseconnectサイトのみ会社情報を取得することが出来ます。 　</p>
       <p>②アドレスの入力欄に入力したURLから10ページ目までをスクレイピングします。　</p>
-      <p class="right1">③アドレス欄は先頭にhttps://baseconnect.in/が含まれているURLを入力ください。</p>
+      <p class="right1">③アドレス欄は先頭にhttps://baseconnect.in/companies/が含まれているURLを入力ください。</p>
       <p>④CSVファイルはスクレイピング終了後に一覧ページにて自動的に添付されます。　</p>
     </div>
     <br>
@@ -19,7 +19,7 @@
           <%= f.label :タイトル名 %><br>
           <%= f.text_field :name, placeholder: "任意のタイトルをつけてください", class: "form-control1" %>
           <%= f.label :アドレス %><br>
-          <%= f.text_field :url, placeholder: "https://baseconnect.in", class: "form-control1" %>
+          <%= f.text_field :url, placeholder: "https://baseconnect.in/companies/", class: "form-control1" %>
           <%= f.submit "登録", data: { turbo_method: :post, turbo_confirm: 'URLは正しいですか？'}, class: "form-control3"%>
         <% end %>
       </div>

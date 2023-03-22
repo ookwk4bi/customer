@@ -8,20 +8,10 @@
       <p>①添付したCSVファイルのKWを基に検索上位10サイトのURL情報を取得することが可能です。</p>
       <p>②検索上位10サイトの情報を取得できるKWの数は10個です。（CSVファイルの10行目まで）　</p>
       <p class="left">③添付ファイルはCSVファイルのみアップロードが可能です。(EXCEL・PDFなど不可)　　　　</p>
-      <p>④CSVファイルはスクレイピング終了後に一覧ページにて自動的に添付されます。　　　　　　</p>
+      <p class="right2">④スクレイピング終了後に情報を取得したCSVファイルが一覧ページにて自動的に添付されます。</p>
     </div>
     <p class="form_group keyword"><%= @key %></p>
     <br>
-    <% if @keyword.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@keyword.errors.count, "error") %> prohibited this keyword from being saved:</h2>
-        <ul>
-          <% @keyword.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
     <div class="contents row">
       <div class="container1">
         <%= form_with(model: @keyword, method: :post, local: true, multipart: true) do |f| %>
@@ -29,7 +19,7 @@
           <%= f.label :添付ファイル %><br>
           <%# <%= f.text_field :open_filename, placeholder: "利用ファイル", class: "form-control1" %>
           <label class="btn btn-primary pull-left label2 form-control2 ">
-          <%= f.file_field :open_filename, class: "form-control1"%>
+          <%= f.file_field :open_filename, accept: ".csv", class: "form-control1"%>
           ファイルを選択
           </label>
           <br>

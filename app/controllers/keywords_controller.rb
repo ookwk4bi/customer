@@ -32,7 +32,7 @@ class KeywordsController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     else
-      @key = flash[:@key] = "⚠︎CSVファイルのみアップロード可能です"
+      @key = flash[:@key] = "⚠︎CSVファイルが添付されていません"
       render :new, status: :unprocessable_entity
     end
   end
