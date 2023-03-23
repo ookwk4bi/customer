@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    collection do
+      get :download_csv
+    end
   end
   resources :imitsus do
     collection do

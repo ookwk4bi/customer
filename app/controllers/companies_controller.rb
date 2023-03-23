@@ -1,11 +1,12 @@
 class CompaniesController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
-    @companies = Company.page(params[:page])
+    @companies = current_user.companies.page(params[:page])
     respond_to do |format|
       format.html
-      format.csv { send_data @companies.generate_csv, filename: "contents-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
+      format.csv { send_data @companies.generate_csv(current_user), filename: "contents-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
     end
   end
 
@@ -21,6 +22,7 @@ class CompaniesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
 
   # def show
   #   @company = Company.find(params[:id])

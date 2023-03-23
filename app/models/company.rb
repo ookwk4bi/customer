@@ -9,11 +9,11 @@ class Company < ApplicationRecord
     ["name", "address","url"]
   end
 
-  def self.generate_csv
+  def self.generate_csv(user)
     CSV.generate(headers: true) do |csv|
       csv << csv_attributes
-      all.each do |part|
-        csv << csv_attributes.map{|attr| part.send(attr)}
+      where(user: user).each do |company|
+        csv << csv_attributes.map{|attr| company.send(attr)}
       end
     end
   end
