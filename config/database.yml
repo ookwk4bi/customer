@@ -9,25 +9,24 @@
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  socket: /var/lib/mysql/mysql.sock
-  # socket: /tmp/mysql.sock
+# default: &default
+#   encoding: utf8
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: root
+#   password:
+#   # socket: /var/lib/mysql/mysql.sock
+#   socket: /tmp/mysql.sock
 
-development:
-  <<: *default
-  database: customer_development
+# development:
+#   <<: *default
+#   database: customer_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: customer_test
+# test:
+#   <<: *default
+#   database: customer_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,8 +48,34 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   database: customer_production
+#   username: <%= ENV['CUSTOMER_DATABASE_USER'] %>
+#   password: <%= ENV['SECRET_KEY_BASE'] %>
+
+
+default: &default
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  database: customer_development
+
+test:
+  <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  database: customer_test
+
 production:
   <<: *default
-  database: customer_production
-  username: <%= ENV['CUSTOMER_DATABASE_USER'] %>
-  password: <%= ENV['SECRET_KEY_BASE'] %>
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
