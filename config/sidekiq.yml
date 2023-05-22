@@ -5,7 +5,7 @@
   - rekaizen_scraping
   - aimitsu_saas_scraping
 :limits:
-  aimitus_scraping: 1
+  aimitsu_scraping: 1
   baseconnect_scraping: 1
   keyword_scraping: 1
   rekaizen_scraping: 1
