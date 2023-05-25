@@ -26,7 +26,7 @@ fi
 
 # Execute rake tasks
 cd $HOME/project/src # Change directory to the source code directory
-bundle install --path vendor/bundle、--jobs 4 --retry 3 # Install dependencies
+bundle install --path vendor/bundle # Install dependencies
 bundle exec rake assets:precompile
 bundle exec rake assets:clean
 bundle exec rake db:migrate
