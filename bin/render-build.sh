@@ -15,9 +15,18 @@ if [[ ! -d $STORAGE_DIR/chrome ]]; then
 else
   echo "...Using Chrome from cache"
 fi
-	
-	# be sure to add Chromes location to the PATH as part of your Start Command
-	# export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome"
-  bundle exec rake assets:precompile
-  bundle exec rake assets:clean
-  bundle exec rake db:migrate
+
+# Add Chromes location to the PATH
+export PATH="${PATH}:${STORAGE_DIR}/chrome/opt/google/chrome"
+
+# Generate binstubs if not present
+if [ ! -f bin/bundle ]; then
+  bundle binstubs bundler --force
+fi
+
+# Execute rake tasks
+cd $HOME/project/src # Change directory to the source code directory
+bundle install --path vendor/bundle、--jobs 4 --retry 3 # Install dependencies
+bundle exec rake assets:precompile
+bundle exec rake assets:clean
+bundle exec rake db:migrate
