@@ -4,7 +4,7 @@ set -o errexit
 
 STORAGE_DIR=/opt/render/project/.render
 
-if [[  -d $STORAGE_DIR/chrome ]]; then
+if [[ ! -d $STORAGE_DIR/chrome ]]; then
   echo "...Downloading Chrome"
   mkdir -p $STORAGE_DIR/chrome
   cd $STORAGE_DIR/chrome
@@ -16,8 +16,10 @@ else
   echo "...Using Chrome from cache"
 fi
 
-# Add Chromes location to the PATH
-export PATH="${PATH}:${STORAGE_DIR}/chrome/opt/google/chrome"
+# be sure to add Chromes location to the PATH as part of your Start Command
+# export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome"
+
+# add your own build commands...
 
 # Generate binstubs if not present
 if [ ! -f bin/bundle ]; then
