@@ -18,7 +18,9 @@ class AimitsuJob
     Capybara.register_driver :selenium_chrome do |app|
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_preference(:download, default_directory: "tmp/download")            # ダウンロードディレクトリを指定
-      options.add_emulation(device_name: 'iPhone X') if mobile                        # mobile: true だった場合はモバイルの設定を追加
+      options.add_emulation(device_name: 'iPhone X') if mobile   
+      options.add_argument('--binary=/opt/render/project/.render/chrome')                     
+      # mobile: true だった場合はモバイルの設定を追加
       options.add_argument('--no-sandbox')                                            # サンドボックスを無効化
       options.add_argument('--disable-dev-shm-usage')                                 # 共有メモリファイルの設定# エラーの許容
       options.add_argument('--disable-desktop-notifications')                         # デスクトップ通知の無効化
