@@ -185,73 +185,35 @@ sidekiqによる非同期処理でスクレイピングの処理を実行し、�
 | ------------------ | ------ | ----------- 
 | email              | string | null: false 
 | encrypted_password | string | null: false 
-| family_name        | string | null: false 
-| given_name         | string | null: false 
 
-
-
-
-### Association
-- has_many :customers
-- has_many :comments<br>
 <br>
 
-
-## costomer テーブル
+## company テーブル
 
 | Column             | Type   | Options     
 | ------------------ | ------ | ----------- 
-| family_name         | string | null: false 
-| detail             | text   | null: false 
-| given_name         | string |    null: false 
-| account_number     | string |  null: false 
-| type       | references | null: false, foreign_key: true 
-| user       | references | null: false, foreign_key: true 
-
-
-
-### Association
-- belongs_to :type
-- belongs_to :user
-- has_many :comments<br>
+| name              | string | null: false 
+| adress            | text   | null: false 
+| url               | text   | null: false 
+| user              | references | null: false, foreign_key: true 
 <br>
 
-## comments テーブル
+## scraping テーブル
 
-| Column | Type       | Options                        
-| ------ | ---------- | ------------------------------ 
-| user       | references | null: false, foreign_key: true 
-| customer   | references | null: false, foreign_key: true 
-| body       | string|  null: false 
-| score      |integer  |  null: false 
+| Column             | Type   | Options     
+| ------------------ | ------ | ----------- 
+| name         | string | null: false 
+| url          | text | null: false 
+| user         | references | null: false, foreign_key: true 
+
+## Kewords テーブル
+
+| Column             | Type   | Options     
+| ------------------ | ------ | ----------- 
+| open_filename          | string | null: false 
+| save_failenam          | string | null: false 
+| user                   | references | null: false, foreign_key: true 
   
-### Association
-
-- belongs_to :customer
-- belongs_to :user<br>
-<br>
-
-
-## documents テーブル
-
-| Column             | Type   | Options     
-| ------------------ | ------ | ----------- 
-| last_name          | string | null: false 
-| personal_name      | string | null: false 
-| content            | text   | null: false 
-| number             | string | null: false 
-
-<br>
-
-## types テーブル
-
-| Column             | Type   | Options     
-| ------------------ | ------ | ----------- 
-| name               | string | null: false 
-
-### Association
-
-- has_many :customers<br>
 
 <br>
 
@@ -261,17 +223,17 @@ sidekiqによる非同期処理でスクレイピングの処理を実行し、�
 <br>
 
 # 開発環境
-Ruby/Ruby on Rails/JavaScript/MySQL/Github/render.com/Visual Studio Code<br>
+Ruby/Ruby on Rails/JavaScript/MySQL/Github/Visual Studio Code<br>
 <br>
 
 # ローカルでの動作方法 
 
 ```bash
-$ git clone git@github.com:ookwk4bi/customer_mission.git
+$ git@github.com:ookwk4bi/customer.git
 ``` 
 
 ```bash
-$ cd customer_mission
+$ cd customer
 ``` 
 
 ```bash
