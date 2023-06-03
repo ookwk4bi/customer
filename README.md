@@ -24,6 +24,10 @@
 Sidekiqの並列処理機能を活用して、複数のWebサイトから同時にデータを収集することもできます。
 <br>
 
+②営業先の会社情報の管理
+会社名・住所・URLの営業先の会社情報を登録し、管理することができます。<br>
+CSVエクポートのボタンを押すことでCSVファイルとして会社情報が出力されます。<br>
+
 
 【アプリケーションを作成した背景】<br>
 営業部門でのSEO営業において、毎日100件以上の営業電話を行っていました。<br>
@@ -43,8 +47,8 @@ Sidekiqの並列処理機能を活用して、複数のWebサイトから同時�
 
 <br>
 
-# 洗い出した案件
-[案件を定義したシート](https://docs.google.com/spreadsheets/d/1uVg2ICpejKJ08BUCTV34auy97JGyp0MfRH5QQo4UIIQ/edit#gid=982722306)
+<!-- # 洗い出した案件
+[案件を定義したシート](https://docs.google.com/spreadsheets/d/1uVg2ICpejKJ08BUCTV34auy97JGyp0MfRH5QQo4UIIQ/edit#gid=982722306) -->
 
 <br>
 
@@ -54,13 +58,13 @@ Sidekiqの並列処理機能を活用して、複数のWebサイトから同時�
 <br>
   
 
-## 1.トップページ
-スクレイピングの実行後のCSVファイルの一覧ページ。<br>
-（CSVファイルのダウンロードも可能）
+## 1.会社情報一覧ページ
+営業先の会社情報の一覧ページです。<br>
+会社情報の登録とCSVファイルの出力が可能です。
 
 <br>
 
-[![Image from Gyazo](https://i.gyazo.com/fd420ee38181019a66bb08b8519b27a2.gif)](https://gyazo.com/fd420ee38181019a66bb08b8519b27a2)
+[![Image from Gyazo](https://i.gyazo.com/0a4d7cb0c2779e633584a2f9a45f32f1.gif)](https://gyazo.com/0a4d7cb0c2779e633584a2f9a45f32f1)
 
 <br>
 
@@ -123,8 +127,8 @@ SidekiqとRedisが非同期処理を行い、WEBサイトから会社名、住�
 
 ## 4.編集機能
 登録した会社情報の編集がきます。<br>
-スクレイピング機能：ファイル名・URLの編集。<br>
-営業先会社登録：会社名・住所・URLの編集。
+【スクレイピング機能】：ファイル名・URLの編集。<br>
+【営業先の会社登録】：会社名・住所・URLの編集。
 
 
 <br>
