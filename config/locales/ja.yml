@@ -34,4 +34,12 @@ ja:
         save_filename: 保存ファイル名
         number: キーワード数
 
+ja:
+  activerecord:
+    errors:
+      models:
+        customer:
+          attributes:
+            family_name:
+              blank: "姓を入力してください"
 
