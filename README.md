@@ -107,7 +107,7 @@ SidekiqとRedisが非同期処理を行い、WEBサイトから会社名、住�
 <br>
 
 
-## 2.会社情報登録
+## 2.会社情報の登録
 会社名・住所・サイトURLを登録することができます。<br>営業先の会社情報を管理する目的があります。
 
 <br>
@@ -148,7 +148,7 @@ SidekiqとRedisが非同期処理を行い、WEBサイトから会社名、住�
 <br>
 
 ## 6.検索機能
-【スクレイピング機能】タイトル・とURLで検索可能。<br>
+【スクレイピング機能】タイトルとURLで検索可能。<br>
 【営業先の会社登録】会社名・住所・URLで検索可能<br>
 
 
@@ -202,7 +202,7 @@ SidekiqとRedisが非同期処理を行い、WEBサイトから会社名、住�
 | Column             | Type   | Options     
 | ------------------ | ------ | ----------- 
 | open_filename          | string | null: false 
-| save_failenam          | string | null: false 
+| save_filename          | string | null: false 
 | user                   | references | null: false, foreign_key: true 
   
 
